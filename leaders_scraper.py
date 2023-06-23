@@ -23,7 +23,7 @@ def get_leaders():
 
     # Pass the session object to the get_first_paragraph() function
     for country in countries:
-        for i in range(0, 3): ######## required improvement to find the number of the leaders in a smart way
+        for i in range(0,len(leaders_per_country[country])): ######## required improvement to find the number of the leaders in a smart way
             wikipedia_url = leaders_per_country[country][i]['wikipedia_url']
             first_paragraph = get_first_paragraph(wikipedia_url, session)  # Pass the session object as an argument
             leaders_per_country[country][i]['first_paragraph'] = first_paragraph
