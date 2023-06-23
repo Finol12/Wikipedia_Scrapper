@@ -2,4 +2,3 @@ wikipedia_scraper_env
 main.py
 wikipedia_scraper.ipynb
 leaders.json
-.gitignore
