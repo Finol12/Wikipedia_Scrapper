@@ -31,7 +31,15 @@ def get_leaders():
     return leaders_per_country, countries
 
 
+"""
+Retrieves the first paragraph from the given Wikipedia URL using a Session object
+Parameters:
+        - wikipedia_url (str): The URL of the Wikipedia page.
+        - session (Session): The Session object used for making requests.
 
+Returns:
+        - first_paragraph (str): The sanitized first paragraph of the Wikipedia page.
+"""
 def get_first_paragraph(wikipedia_url,Session):
     print(wikipedia_url)
     req_text= Session.get(wikipedia_url)
@@ -41,10 +49,17 @@ def get_first_paragraph(wikipedia_url,Session):
         if paragraph.text.split() :
             first_paragraph = paragraph.text
             break
-    ######## the regex part should be imroved to clean all the paragraphs for different countries    
+    # Sanitize the first paragraph by removing unwanted elements using regex
+    # (the regex part should be improved to clean all the paragraphs for different countries.)    
     first_paragraph= re.sub(r"\[[0-9a-zA-Z]+\]|\xa0–|\n", ' ', first_paragraph)
     return first_paragraph
 
+
+"""
+    Saves the leaders_per_country dictionary as a JSON file.
+    Parameters:
+        - leaders_per_country (dict): The dictionary containing leaders data.
+"""
 def save(leaders_per_country):
     with open("leaders.json","w") as leaders:
         json.dump(leaders_per_country,leaders)
